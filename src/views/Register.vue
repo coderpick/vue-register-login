@@ -22,20 +22,20 @@ function registerUser() {
         confirm_password: data.confirm_password,
     }
 
-    console.log(user);
-
+   
     const { isInvalid, errors } = validateInput(user);
     if (isInvalid) {
         data.inputErrors = errors;
     } else {
         this.errors = {};
         // store user in local storage
-        if (localStorage.users) {
-            let lsUsers = localStorage.users;
-            this.users = JSON.parse(lsUsers);
-        }
+        // if (localStorage.users) {
+        //     let lsUsers = localStorage.users;
+        //     data.users = JSON.parse(JSON.stringify(lsUsers));
+        // }
+
         data.users.push(user);
-        localStorage.setItem("users", JSON.stringify(this.users));
+        localStorage.setItem("users", JSON.stringify(data.users));
         data.name = "";
         data.email = "";
         data.password = "";
@@ -44,13 +44,14 @@ function registerUser() {
 
 }
 
-
+console.log(data);
 
 </script>
 
 <template>
     <div class="min-h-screen  flex flex-col justify-center sm:py-12">
         <div class="p-10 xs:p-0 mx-auto w-full md:w-10/12 lg:w-2/6">
+            {{  data }}
             <div class="flex justify-center mb-5 ">
                 <img :src="logo" class="w-1/6" alt="">
             </div>
